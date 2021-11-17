@@ -1,15 +1,22 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using MT.OnlineRestaurant.BusinessLayer;
+using MT.OnlineRestaurant.DataLayer.EntityFrameWorkModel;
+using MT.OnlineRestaurant.DataLayer.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MT.OnlineRestaurant.SearchManagement
+namespace MT.OnlineRestaurant.SearchManagement.Controllers
 {
     public class Startup
     {
@@ -23,7 +30,17 @@ namespace MT.OnlineRestaurant.SearchManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication1", Version = "v1" });
+            });
+            services.AddDbContext<RestaurantManagementContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString"),
+               b => b.MigrationsAssembly("MT.OnlineRestaurant.DataLayer")));
+            services.AddTransient<IRestaurantBusiness, RestaurantBusiness>();
+            services.AddTransient<ISearchRepository, SearchRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,16 +49,11 @@ namespace MT.OnlineRestaurant.SearchManagement
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -49,7 +61,7 @@ namespace MT.OnlineRestaurant.SearchManagement
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

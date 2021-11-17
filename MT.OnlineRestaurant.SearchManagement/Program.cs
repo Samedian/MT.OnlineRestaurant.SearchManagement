@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MT.OnlineRestaurant.SearchManagement
+namespace MT.OnlineRestaurant.SearchManagement.Controllers
 {
     public class Program
     {
