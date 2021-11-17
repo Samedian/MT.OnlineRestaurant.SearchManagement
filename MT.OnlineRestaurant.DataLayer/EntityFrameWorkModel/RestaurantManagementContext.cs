@@ -7,7 +7,7 @@ namespace MT.OnlineRestaurant.DataLayer.EntityFrameWorkModel
     public partial class RestaurantManagementContext : DbContext
     {
 
-        private readonly string DbConnectionString;
+        //private readonly string DbConnectionString;
         public RestaurantManagementContext()
         {
         }
@@ -15,11 +15,12 @@ namespace MT.OnlineRestaurant.DataLayer.EntityFrameWorkModel
         public RestaurantManagementContext(DbContextOptions<RestaurantManagementContext> options)
             : base(options)
         {
+           
         }
-        public RestaurantManagementContext(string connectionstring)
-        {
-            DbConnectionString = connectionstring;
-        }
+        //public RestaurantManagementContext(string connectionstring)
+        //{
+        //    DbConnectionString = connectionstring;
+        //}
         public virtual DbSet<LoggingInfo> LoggingInfo { get; set; }
         public virtual DbSet<TblCuisine> TblCuisine { get; set; }
         public virtual DbSet<TblLocation> TblLocation { get; set; }
@@ -33,7 +34,6 @@ namespace MT.OnlineRestaurant.DataLayer.EntityFrameWorkModel
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer(@"Data Source=VSSqlKibana\SQLEXPRESS;Initial Catalog=RestaurantSearchManagement;Integrated Security=True");
                 //optionsBuilder.UseSqlServer(DbConnectionString);
             }
