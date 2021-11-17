@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.OnlineRestaurant.SearchManagement", "MT.OnlineRestaurant.SearchManagement\MT.OnlineRestaurant.SearchManagement.csproj", "{F34E06F3-E79F-49F3-BD04-0B0C4AF02A62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F34E06F3-E79F-49F3-BD04-0B0C4AF02A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34E06F3-E79F-49F3-BD04-0B0C4AF02A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34E06F3-E79F-49F3-BD04-0B0C4AF02A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34E06F3-E79F-49F3-BD04-0B0C4AF02A62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A75C76A8-74DE-494E-B42E-EAF907FF15E0}
+	EndGlobalSection
+EndGlobal
