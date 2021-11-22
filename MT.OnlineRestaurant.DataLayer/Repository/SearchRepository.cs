@@ -315,7 +315,7 @@ namespace MT.OnlineRestaurant.DataLayer.Repository
                     foreach (var place in restaurantInfo)
                     {
                         double distance = Distance(location_Details.xaxis, location_Details.yaxis, (double)place.TblLocation.X, (double)place.TblLocation.Y);
-                        if (distance < int.Parse(location_Details.distance.ToString()))
+                        if (distance !=null && distance < int.Parse(location_Details.distance.ToString()))
                         {
                             RestaurantSearchDetails tblRestaurant = new RestaurantSearchDetails
                             {

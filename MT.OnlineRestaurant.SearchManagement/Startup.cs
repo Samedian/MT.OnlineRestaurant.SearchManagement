@@ -34,7 +34,7 @@ namespace MT.OnlineRestaurant.SearchManagement.Controllers
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication1", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Search Management", Version = "v1" });
             });
             services.AddDbContext<RestaurantManagementContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString"),

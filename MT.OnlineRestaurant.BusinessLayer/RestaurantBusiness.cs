@@ -204,7 +204,39 @@ namespace MT.OnlineRestaurant.BusinessLayer
 
         public IQueryable<RestaurantInformation> SearchForRestaurant(SearchForRestaurant searchDetails)
         {
-            throw new NotImplementedException();
+            IQueryable<RestaurantInformation> restaurantInformation = SearchRestaurantByLocation(searchDetails.location);
+            IQueryable<RestaurantInformation> restaurants = GetRestaurantsBasedOnMenu(searchDetails.search);
+            if (restaurantInformation.Any() && !restaurants.Any())
+                return restaurantInformation;
+            else
+            if (!restaurantInformation.Any() && restaurants.Any())
+                return restaurants;
+            else
+            {
+                List<RestaurantInformation> restaurant_Info = new List<RestaurantInformation>();
+
+                foreach (var data in restaurantInformation)
+                {
+                    if (restaurants.FirstOrDefault(x => x.restaurant_ID == data.restaurant_ID) != null)
+                    {
+                        RestaurantInformation restaurant_Details = new RestaurantInformation
+                        {
+                            restaurant_ID = data.restaurant_ID,
+                            restaurant_Name = data.restaurant_Name,
+                            restaurant_Address = data.restaurant_Address,
+                            restaurant_ContactNo = data.restaurant_ContactNo,
+                            closing_Time = data.closing_Time,
+                            opening_Time = data.opening_Time,
+                            website = data.website,
+                            xaxis = data.xaxis,
+                            yaxis = data.yaxis
+                        };
+                        restaurant_Info.Add(restaurant_Details);
+                    }
+                }
+                return restaurant_Info.AsQueryable(); 
+            }
+           
         }
 
         /// <summary>
