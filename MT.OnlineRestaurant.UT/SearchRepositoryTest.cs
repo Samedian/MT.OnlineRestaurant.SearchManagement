@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using MT.OnlineRestaurant.BusinessEntities;
 using MT.OnlineRestaurant.BusinessLayer;
+using MT.OnlineRestaurant.DataLayer.EntityFrameWorkModel;
+using MT.OnlineRestaurant.DataLayer.Repository;
 using MT.OnlineRestaurant.SearchManagement.Controllers;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -12,54 +15,58 @@ namespace MT.OnlineRestaurant.UT
     [TestFixture]
     public class SearchRepositoryTest
     {
-        //[Test]
-        //public void Test_GetResturantDetails()
-        //{
-        //    int restaurantID = 10;
+        [Test]
+        public void Test_GetResturantDetails()
+        {
+            int restaurantID = 10;
 
-        //    var options = new DbContextOptionsBuilder<RestaurantManagementContext>()
-        //    .UseInMemoryDatabase(databaseName: "RestaurantManagement")
-        //    .Options;
+            var options = new DbContextOptionsBuilder<RestaurantManagementContext>()
+            .UseInMemoryDatabase(databaseName: "RestaurantManagement")
+            .Options;
 
-        //    RestaurantManagementContext managementContext = new RestaurantManagementContext(options);
-        //    TblRestaurant rest = new TblRestaurant
-        //    {
-        //         Id = 10,
-        //         Name = "ABC",
-        //         Address = "6th Street",
-        //         ContactNo = "9025619584",
-        //         CloseTime = "9:00PM",
-        //         OpeningTime = "10:00PM",
-        //         TblLocationId = 1
-        //    };
-        //    managementContext.TblRestaurant.Add(rest);
+            RestaurantManagementContext managementContext = new RestaurantManagementContext(options);
+            TblRestaurant rest = new TblRestaurant
+            {
+                Id = 10,
+                Name = "ABC",
+                Address = "6th Street",
+                ContactNo = "9025619584",
+                CloseTime = "9:00PM",
+                OpeningTime = "10:00PM",
+                TblLocationId = 1
+            };
+            managementContext.TblRestaurant.Add(rest);
 
-        //    TblLocation location = new TblLocation
-        //    {
-        //        Id = 1,
-        //        X = (decimal)40.987987,
-        //        Y = (decimal)36.987656
-        //    };
-        //    managementContext.TblLocation.Add(location);
+            TblLocation location = new TblLocation
+            {
+                Id = 1,
+                X = (decimal)40.987987,
+                Y = (decimal)36.987656
+            };
+            managementContext.TblLocation.Add(location);
 
-        //    SearchRepository _repository = new SearchRepository(managementContext);
-        //    var restaurantDetails = _repository.GetResturantDetails(restaurantID);
+            SearchRepository _repository = new SearchRepository(managementContext);
+            var restaurantDetails = _repository.GetResturantDetails(restaurantID);
 
-        //    Assert.NotNull(restaurantDetails);
+            Assert.NotNull(restaurantDetails);
 
-        //}
+        }
 
-        //[Test]
-        //public void Test_GetTableDetails()
-        //{
-        //    int restaurantID = 11;
+        [Test]
+        public void Test_GetTableDetails()
+        {
+            int restaurantID = 11;
 
-        //    var options = new DbContextOptionsBuilder<RestaurantManagementContext>()
-        //    .UseInMemoryDatabase(databaseName: "RestaurantManagement")
-        //    .Options;
+            var options = new DbContextOptionsBuilder<RestaurantManagementContext>()
+            .UseInMemoryDatabase(databaseName: "RestaurantManagement")
+            .Options;
 
-        //    SearchRepository _repository = new SearchRepository(new RestaurantManagementContext(options));
-        //}
+            SearchRepository _repository = new SearchRepository(new RestaurantManagementContext(options));
+            var restaurantDetails = _repository.GetTableDetails(restaurantID);
+
+            Assert.NotNull(restaurantDetails);
+
+        }
 
         [Test]
         public void GetRestaurantRating()

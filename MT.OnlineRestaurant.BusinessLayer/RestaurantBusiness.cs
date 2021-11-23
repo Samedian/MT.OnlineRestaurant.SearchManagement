@@ -139,19 +139,22 @@ namespace MT.OnlineRestaurant.BusinessLayer
                 searched_Restaurant = search_Repository.GetRestaurantsBasedOnLocation(location_Details);
                 foreach (var restaurants in searched_Restaurant)
                 {
-                    RestaurantInformation restaurant_Details = new RestaurantInformation
+                    if (restaurants != null)
                     {
-                        restaurant_ID = restaurants.restauran_ID,
-                        restaurant_Name = restaurants.restaurant_Name,
-                        restaurant_Address = restaurants.restaurant_Address,
-                        restaurant_ContactNo = restaurants.restaurant_PhoneNumber,
-                        closing_Time = restaurants.closing_Time,
-                        opening_Time = restaurants.opening_Time,
-                        website = restaurants.restraurant_Website,
-                        xaxis = restaurants.xaxis,
-                        yaxis = restaurants.yaxis
-                    };
-                    restaurant_Info.Add(restaurant_Details);
+                        RestaurantInformation restaurant_Details = new RestaurantInformation
+                        {
+                            restaurant_ID = restaurants.restauran_ID != 0 ? restaurants.restauran_ID : 0,
+                            restaurant_Name = restaurants.restaurant_Name != null ? restaurants.restaurant_Name : "",
+                            restaurant_Address = restaurants.restaurant_Address != null ? restaurants.restaurant_Address : "",
+                            restaurant_ContactNo = restaurants.restaurant_PhoneNumber != null ? restaurants.restaurant_PhoneNumber : "",
+                            closing_Time = restaurants.closing_Time != null ? restaurants.closing_Time : "",
+                            opening_Time = restaurants.opening_Time != null ? restaurants.opening_Time : "",
+                            website = restaurants.restraurant_Website != null ? restaurants.restraurant_Website : "",
+                            xaxis = restaurants.xaxis != 0 ? restaurants.xaxis : 0,
+                            yaxis = restaurants.yaxis != 0 ? restaurants.yaxis : 0
+                        };
+                        restaurant_Info.Add(restaurant_Details);
+                    }
                 }
                 return restaurant_Info.AsQueryable();
             }
@@ -263,7 +266,7 @@ namespace MT.OnlineRestaurant.BusinessLayer
             RestaurantMenu menuObj = new RestaurantMenu();
             TblMenu menu = search_Repository.ItemInStock(restaurantID,menuID);
             menuObj.quantity = menu.quantity;           
-             return 0;
+             return menuObj.quantity;
         }
     }
 }

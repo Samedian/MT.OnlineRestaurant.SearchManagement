@@ -22,5 +22,12 @@
     <ProjectReference Include="..\MT.OnlineRestaurant.BusinessLayer\MT.OnlineRestaurant.BusinessLayer.csproj" />
     <ProjectReference Include="..\MT.OnlineRestaurant.DataLayer\MT.OnlineRestaurant.DataLayer.csproj" />
   </ItemGroup>
-
+<ItemGroup>
+    <Reference Include="MT.OnlineRestaurant.Logging">
+      <HintPath>..\..\CommonLibraries\MT.OnlineRestaurant.Logging.dll</HintPath>
+    </Reference>
+    <!--<Reference Include="MT.OnlineRestaurant.ValidateUserHandler">
+      <HintPath>..\..\CommonLibraries\MT.OnlineRestaurant.ValidateUserHandler.dll</HintPath>
+    </Reference>-->
+  </ItemGroup>
 </Project>

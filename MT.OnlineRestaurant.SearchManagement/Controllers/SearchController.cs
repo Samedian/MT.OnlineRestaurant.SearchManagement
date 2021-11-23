@@ -132,7 +132,7 @@ namespace MT.OnlineRestaurant.SearchManagement.Controllers
             int query_result = business_Repo.ItemInStock(restaurantID, menuID);
             if (query_result > 0)
             {
-                return Ok(restaurantID);
+                return Ok(query_result);
             }
             return this.StatusCode((int)HttpStatusCode.InternalServerError, "error");
         }

@@ -5,6 +5,7 @@ using MT.OnlineRestaurant.DataLayer.EntityFrameWorkModel;
 using System.Linq;
 using MT.OnlineRestaurant.DataLayer.DataEntity;
 using Microsoft.Extensions.Options;
+using System.Web.Providers.Entities;
 
 namespace MT.OnlineRestaurant.DataLayer.Repository
 {
@@ -26,8 +27,9 @@ namespace MT.OnlineRestaurant.DataLayer.Repository
                 {
                     var menudetail = (from offer in db.TblOffer
                                       join menu in db.TblMenu
-                                      on offer.TblMenuId equals menu.Id into TableMenu
-                                      from menu in TableMenu.ToList()
+                                      on offer.TblMenuId equals menu.Id 
+                                      //into TableMenu
+                                      //from menu in TableMenu.ToList()
                                       join cuisine in db.TblCuisine on menu.TblCuisineId equals cuisine.Id
                                       where offer.TblRestaurantId == restaurantID
                                       select new MenuDetails
@@ -314,22 +316,25 @@ namespace MT.OnlineRestaurant.DataLayer.Repository
                 {
                     foreach (var place in restaurantInfo)
                     {
-                        double distance = Distance(location_Details.xaxis, location_Details.yaxis, (double)place.TblLocation.X, (double)place.TblLocation.Y);
-                        if (distance !=null && distance < int.Parse(location_Details.distance.ToString()))
+                        if (place != null)
                         {
-                            RestaurantSearchDetails tblRestaurant = new RestaurantSearchDetails
+                            double distance = Distance(location_Details.xaxis, location_Details.yaxis, (double)place.TblLocation.X, (double)place.TblLocation.Y);
+                            if (distance != null && place != null && distance < int.Parse(location_Details.distance.ToString()))
                             {
-                                restauran_ID = place.TblRestaurant.Id,
-                                restaurant_Name = place.TblRestaurant.Name,
-                                restaurant_Address = place.TblRestaurant.Address,
-                                restaurant_PhoneNumber = place.TblRestaurant.ContactNo,
-                                restraurant_Website = place.TblRestaurant.Website,
-                                closing_Time = place.TblRestaurant.CloseTime,
-                                opening_Time = place.TblRestaurant.OpeningTime,
-                                xaxis = (double)place.TblLocation.X,
-                                yaxis = (double)place.TblLocation.Y
-                            };
-                            restaurants.Add(tblRestaurant);
+                                RestaurantSearchDetails tblRestaurant = new RestaurantSearchDetails
+                                {
+                                    restauran_ID = place.TblRestaurant.Id,
+                                    restaurant_Name = place.TblRestaurant.Name != null ? place.TblRestaurant.Name : "",
+                                    restaurant_Address = place.TblRestaurant.Address != null ? place.TblRestaurant.Address : "",
+                                    restaurant_PhoneNumber = place.TblRestaurant.ContactNo != null ? place.TblRestaurant.ContactNo : "",
+                                    restraurant_Website = place.TblRestaurant.Website != null ? place.TblRestaurant.Website : "",
+                                    closing_Time = place.TblRestaurant.CloseTime != null ? place.TblRestaurant.CloseTime : "",
+                                    opening_Time = place.TblRestaurant.OpeningTime != null ? place.TblRestaurant.OpeningTime : "",
+                                    xaxis = (double)place.TblLocation.X,
+                                    yaxis = (double)place.TblLocation.Y
+                                };
+                                restaurants.Add(tblRestaurant);
+                            }
                         }
                     }
 
