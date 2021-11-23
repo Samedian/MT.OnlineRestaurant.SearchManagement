@@ -134,7 +134,7 @@ namespace MT.OnlineRestaurant.SearchManagement.Controllers
             {
                 return Ok(query_result);
             }
-            return this.StatusCode((int)HttpStatusCode.InternalServerError, "error");
+            return this.StatusCode((int)HttpStatusCode.InternalServerError, "Not Found");
         }
     }
 }
