@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.OnlineRestaurant.DataLay
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.OnlineRestaurant.UT", "MT.OnlineRestaurant.UT\MT.OnlineRestaurant.UT.csproj", "{EB82C1B3-CECC-4983-8B2F-B14B8CB37EE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.Online.Restaurant.MessagesManagement", "MT.Online.Restaurant.MessagesManagement\MT.Online.Restaurant.MessagesManagement.csproj", "{534785A7-1ED5-4594-897D-DFEB52E2BF6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EB82C1B3-CECC-4983-8B2F-B14B8CB37EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB82C1B3-CECC-4983-8B2F-B14B8CB37EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB82C1B3-CECC-4983-8B2F-B14B8CB37EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{534785A7-1ED5-4594-897D-DFEB52E2BF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{534785A7-1ED5-4594-897D-DFEB52E2BF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{534785A7-1ED5-4594-897D-DFEB52E2BF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{534785A7-1ED5-4594-897D-DFEB52E2BF6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
